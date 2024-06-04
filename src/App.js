@@ -12,13 +12,11 @@ import OrdersLayout from "./layouts/OrdersLayout.js";
 import OrderDashboard from "./orderpages/OrderDashboard.js";
 import CreateOrder from "./orderpages/CreateOrder.js";
 import YourOrders,{loader as orderLoader} from "./orderpages/YourOrders.js";
-
 import About from "./pages/About.js";
-
 import Layout from "./layouts/Layout.js";
 import OrderDetails from "./orderpages/OrderDetails.js";
 import ErrorPage from "./pages/ErrorPage.js";
-import CreateProduct,{action as createProductAction} from "./adminPages/CreateProduct.js";
+import CreateProduct,{action as createProductAction,loader as createProductLoader} from "./adminPages/CreateProduct.js";
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -27,7 +25,12 @@ export default function App() {
         <Route path="login" element={<Login />} action={loginAction} />
         <Route path="signup" element={<SignUp />} />
         <Route path="about" element={<About />} />
-        <Route path="create-product" element={<CreateProduct />} action={createProductAction} />
+        <Route 
+        path="create-product" 
+        element={<CreateProduct />} 
+        action={createProductAction} 
+          loader={createProductLoader}
+        />
         <Route path="orders" element={<OrdersLayout />}>
           <Route index element={<OrderDashboard />} />
           <Route path="create-order" element={<CreateOrder />} />
